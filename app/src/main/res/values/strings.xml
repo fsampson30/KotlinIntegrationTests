@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">KotlinIntegrationTests</string>
+    <string name="result">Result</string>
+    <string name="error">Error</string>
 </resources>
