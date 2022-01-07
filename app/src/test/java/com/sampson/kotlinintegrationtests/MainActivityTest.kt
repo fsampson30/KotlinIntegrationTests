@@ -13,6 +13,12 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
 
+@Config(
+    manifest=Config.NONE,
+    sdk = [Build.VERSION_CODES.P],
+    application = Application::class,
+    assetDir = "/assetDir/")
+
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
     private val context = getApplicationContext<Application>()
