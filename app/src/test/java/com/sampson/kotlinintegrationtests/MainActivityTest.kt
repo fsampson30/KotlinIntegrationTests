@@ -7,11 +7,18 @@ import android.widget.EditText
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario.launch
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import junit.framework.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
+
+
 
 @Config(
     manifest=Config.NONE,
@@ -30,9 +37,9 @@ class MainActivityTest {
         scenario.onActivity { activity ->
             var edtNumber = activity.findViewById<EditText>(R.id.edtInsertNumber)
             var btnAction = activity.findViewById<Button>(R.id.btnAction)
-            edtNumber.setText(5.toString())
-            btnAction.performClick()
-            assertEquals(context.getString(R.string.result, "120"), edtNumber.text)
+            onView(withId(R.id.edtInsertNumber)).perform(typeText("5"))
+            onView(withId(R.id.btnAction)).perform(click())
+            onView(withId(R.id.edtInsertNumber)).check(matches(withText(activity.getString(R.string.result,"120"))))
         }
     }
 }
